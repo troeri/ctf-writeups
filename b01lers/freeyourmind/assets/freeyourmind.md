@@ -92,6 +92,9 @@ io.sendlineafter('it.', shellcode)
 io.interactive()
 ```
 
-![](assets/pwned.png)
+Run it. 
 
-Remote was down when I wrote this, but exploits works:)
+
+
+
+
